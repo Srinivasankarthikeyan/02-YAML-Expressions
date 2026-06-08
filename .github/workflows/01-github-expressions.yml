@@ -16,6 +16,8 @@ jobs:
         run: |
           echo "Contains: ${{ contains('Hello World', 'Hello') }}"
           echo "Starts with: ${{ startsWith('v1.0.0', 'v') }}"
+          echo "Ends with: ${{ endswith('main.py', '.py') }}"
+          echo "Contains: ${{ contains('Srinivasan', 'Sri') }}"
           
       - name: Format and join
         run: |
