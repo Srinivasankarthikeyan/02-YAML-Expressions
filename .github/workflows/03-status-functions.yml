@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Critical Step
         id: critical
-        run: exit 1 # Fail intentionally
+        #run: exit 1 # Fail intentionally
       
       - name: Runs only on success
         if: success() # Default behavior
