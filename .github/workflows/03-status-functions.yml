@@ -10,7 +10,7 @@ jobs:
       - name: Critical Step
         id: critical
         run: exit 1 # Fail intentionally
-        echo ${{ id.critical.outcome }} # This will show 'failure'
+        echo ${{ ids.critical.outcome }} # This will show 'failure'
       
       - name: Runs only on success
         if: success() # Default behavior
