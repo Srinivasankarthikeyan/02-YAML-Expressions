@@ -1,0 +1,28 @@
+name: 01 GitHub Expressions
+# Expressions evaluate values programmatically.
+
+on: push
+
+jobs:
+  expressions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Math and logic
+        run: |
+          echo "1 + 2 = ${{ 1 + 2 }}"
+          echo "Is 5 > 3? ${{ 5 > 3 }}"
+      
+      - name: String functions
+        run: |
+          echo "Contains: ${{ contains('Hello World', 'Hello') }}"
+          echo "Starts with: ${{ startsWith('v1.0.0', 'v') }}"
+          
+      - name: Format and join
+        run: |
+          echo "Format: ${{ format('Hello {0}!', 'GitHub') }}"
+          echo "Join: ${{ join(github.event.commits.*.message, ', ') }}"
+
+# Exam Notes:
+# - Use ${{ }} syntax.
+# - literals: boolean (true/false), null, number, string.
+# - Object filters: * can be used to filter arrays (e.g., github.event.commits.*.author.name).
