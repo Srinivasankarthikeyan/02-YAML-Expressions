@@ -7,10 +7,6 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      # - name: Critical Step
-      #   id: critical
-      #   run: exit 1 # Fail intentionally
-      
       - name: Runs only on success
         if: success() # Default behavior
         run: echo "I won't run"
@@ -26,6 +22,11 @@ jobs:
       - name: Runs no matter what
         if: always()
         run: echo "Closing resources..."
+
+      - name: Critical Step
+        id: critical
+        run: exit 1 # Fail intentionally
+      
 
 # Exam Tip:
 # If you omit the status function, it defaults to success().
