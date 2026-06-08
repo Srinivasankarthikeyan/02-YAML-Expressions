@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Math and logic
         run: |
-          echo "1 + 2 = ${{ 1 + 2 }}"
+          echo "1 + 2 = $((1 + 2))"
           echo "Is 5 > 3? ${{ 5 > 3 }}"
       
       - name: String functions
