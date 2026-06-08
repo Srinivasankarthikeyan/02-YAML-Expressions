@@ -1,0 +1,29 @@
+name: 02 Conditional Execution
+# 'if' conditionals for jobs and steps.
+
+on: push
+
+jobs:
+  production-only:
+    # Job-level conditional
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This only runs on the main branch."
+
+  branch-agnostic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step conditional
+        # Step-level conditional
+        if: github.actor == 'admin-user'
+        run: echo "Admin triggered this!"
+         
+      - name: Always run this     # This step runs regardless of the previous step's condition. even previous step fails or is skipped.
+        # Using status functions in if
+        if: always()
+        run: echo "Cleanup task..."
+
+# Exam Notes:
+# - You don't need ${{ }} inside 'if' strings, but it's recommended for consistency.
+# - If you don't use ${{ }}, GitHub will evaluate the content as an expression automatically.
