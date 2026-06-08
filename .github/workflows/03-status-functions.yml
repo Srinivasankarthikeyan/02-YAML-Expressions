@@ -1,0 +1,33 @@
+name: 03 Status Functions
+# success(), failure(), cancelled(), always()
+
+on: push
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Critical Step
+        id: critical
+        run: exit 1 # Fail intentionally
+        echo ${{ id.critical.outcome }} # This will show 'failure'
+      
+      - name: Runs only on success
+        if: success() # Default behavior
+        run: echo "I won't run"
+        
+      - name: Runs only on failure
+        if: failure()
+        run: echo "The previous step failed!"
+        
+      - name: Runs only if cancelled
+        if: cancelled()
+        run: echo "Workflow was stopped"
+        
+      - name: Runs no matter what
+        if: always()
+        run: echo "Closing resources..."
+
+# Exam Tip:
+# If you omit the status function, it defaults to success().
+# if: failure() checks if ANY previous step failed in the job.
