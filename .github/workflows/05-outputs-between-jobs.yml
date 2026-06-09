@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     # Map the step output to a job output
     outputs:
-      artifact-name: ${{ steps.set-output.outputs.NAME }}
+      artifact_name: ${{ steps.set-output.outputs.NAME }}
     steps:
       - id: set-output
         run: echo "NAME=my-cool-artifact" >> $GITHUB_OUTPUT
@@ -18,7 +18,7 @@ jobs:
     needs: generator
     steps:
       - name: Use the output
-        run: echo "Received artifact name: ${{ needs.generator.outputs.artifact-name }}"
+        run: echo "Received artifact name: ${{ needs.generator.outputs.artifact_name }}"
 
 # Exam Notes:
 # 1. Set output in step: echo "key=value" >> $GITHUB_OUTPUT
