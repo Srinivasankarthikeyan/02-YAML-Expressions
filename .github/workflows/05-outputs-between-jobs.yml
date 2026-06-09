@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     # Map the step output to a job output
     outputs:
-      artifact_name: ${{ steps.set-output.outputs.NAME }}
+      artifact_name: ${{ steps.set_output.outputs.NAME }}
     steps:
-      - id: set-output
+      - id: set_output
         run: echo "NAME=my-cool-artifact" >> $GITHUB_OUTPUT
 
   consumer:
