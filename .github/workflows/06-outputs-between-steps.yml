@@ -1,0 +1,20 @@
+name: 06 Outputs Between Steps
+# Sharing data between steps in the SAME job.
+
+on: push
+
+jobs:
+  step-sharing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Value
+        id: step1 # ID is required to reference outputs later
+        run: echo "TIMESTAMP=$(date +%s)" >> $GITHUB_OUTPUT
+        
+      - name: Use Value
+        run: echo "The timestamp from step 1 is ${{ steps.step1.outputs.TIMESTAMP }}"
+
+# Exam Notes:
+# - Use 'id' for the step that creates the output.
+# - Syntax: ${{ steps.<step-id>.outputs.<key> }}
+# - Preferred over environment variables when you want to be explicit about data flow.
