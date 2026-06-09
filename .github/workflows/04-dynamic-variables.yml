@@ -1,0 +1,22 @@
+name: 04 Dynamic Variables
+# Using $GITHUB_ENV to set environment variables dynamically.
+
+on: push
+
+jobs:
+  dynamic-vars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calculate and store version
+        run: |
+          echo "APP_VERSION=1.2.$(date +%s)" >> $GITHUB_ENV
+          
+      - name: Use the dynamic variable
+        # The variable is available in all SUBSEQUENT steps.
+        run: echo "The calculated version is $APP_VERSION"
+
+# Exam Notes:
+# - echo "NAME=VALUE" >> $GITHUB_ENV
+# - Variable is NOT available in the same step it was set.
+# - It IS available in all following steps in the SAME job.
+# - For sharing across JOBS, use 'outputs'.
