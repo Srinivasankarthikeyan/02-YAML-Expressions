@@ -1,12 +1,10 @@
 name: 05 Outputs Between Jobs
-# Passing data from one job to another.
 
 on: push
 
 jobs:
   generator:
     runs-on: ubuntu-latest
-    # Map the step output to a job output
     outputs:
       artifact_name: ${{ steps.set_output.outputs.NAME }}
     steps:
@@ -18,8 +16,8 @@ jobs:
     needs: generator
     steps:
       - name: Use the output
-        run: echo "Received artifact name: ${{ needs.generator.outputs.artifact_name }}"
-
+        run: |
+          echo "Received artifact name: ${{ needs.generator.outputs.artifact_name }}"
 # Exam Notes:
 # 1. Set output in step: echo "key=value" >> $GITHUB_OUTPUT
 # 2. Map step output to job output in 'outputs' section.
